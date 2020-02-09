@@ -14,3 +14,14 @@ insert into LoginDetails values(
 'Employee'
 )
 select * from LoginDetails
+update  LoginDetails
+set UserName='TestAdmin'
+where UserID='TestAdmin'
+
+update  LoginDetails
+set UserName='TestPublic'
+where UserID='TestPublic'
+
+update  LoginDetails
+set UserName='TestEmployee'
+where UserID='TestEmployee'
