@@ -168,6 +168,9 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+    <Content Include="DBScripts\CreateDataBase.sql" />
+    <Content Include="DBScripts\CreateTableLoginDetails.sql" />
+    <Content Include="DBScripts\InsertLoginDetails.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
