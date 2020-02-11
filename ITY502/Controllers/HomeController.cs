@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ITY502.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,11 +31,11 @@ namespace ITY502.Controllers
         }
         public ActionResult Login()
         {
-            LoginDetail loginDetails = new LoginDetail();
+            Login loginDetails = new Login();
             return View(loginDetails);
         }
         [HttpPost]
-        public ActionResult Login(LoginDetail loginDetails)
+        public ActionResult Login(Login loginDetails)
         {
              
             if (ModelState.IsValid)
@@ -53,17 +54,21 @@ namespace ITY502.Controllers
                     var userName = (from m in dbEntities.LoginDetails
                                     where m.UserID == loginDetails.UserID && m.Password == loginDetails.Password
                                     select m.UserName).FirstOrDefault();
-                    var userID = loginModel.UserID;
-                    //var userDetails = onlineBankingEntities.LoginInfo.Where(m => m.UserID == loginModel.UserID && m.Password == loginModel.Password).Select(m => new { m.UserName, m.UserType });
-                    //var userType = userDetails.Select(e => e.UserType).ToString();
-                    //var userName = userDetails.Select(e => e.UserName).ToString();
-                    if (userType == "Customer")
+                    var userID = loginDetails.UserID;
+                    if (userType == "Public")
                     {
                         Session["UserID"] = userID;
                         Session["UserType"] = userType;
                         Session["UserName"] = userName;
-                        return RedirectToAction("UserHomePage", "User");
+                        return RedirectToAction("PublicHomePage", "Public");
 
+                    }
+                    else if (userType == "Employee")
+                    {
+                        Session["UserID"] = userID;
+                        Session["UserType"] = userType;
+                        Session["UserName"] = userName;
+                        return RedirectToAction("EmployeeHomePage", "Employee");
                     }
                     else if (userType == "Admin")
                     {
